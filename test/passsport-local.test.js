@@ -20,4 +20,23 @@ describe('test/passsport-local.test.js', () => {
       .expect('hi, passsportLocal')
       .expect(200);
   });
+
+  it('should show login tip', () => {
+    return app.httpRequest()
+      .get('/home')
+      .expect(/login page/)
+      .expect(200);
+  });
+
+  it('should show user info', async () => {
+    app.mockCsrf();
+    await app.httpRequest().
+      post('/passport/local')
+      .type('form')
+      .send(({
+        username: 'username-local',
+        password: 'password-local',
+      }))
+      .expect(302);
+  });
 });
