@@ -59,7 +59,11 @@ Both fields define the name of the properties in the POST body that are sent to 
 
 see [config/config.default.js](config/config.default.js) for more detail.
 
-after login successful,we can redirect to origin url use `ctx.session.returnTo`
+after login successful,we can redirect to origin url use `ctx.session.returnTo`,for example:
+
+```javascript
+ctx.sessioin.returnTo = ctx.path;
+```
 
 ## Example
 
