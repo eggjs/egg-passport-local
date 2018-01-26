@@ -66,9 +66,6 @@ ctx.sessioin.returnTo = ctx.path;
 
 ```js
 // ./controller/home.js
-
-const Controller = require('egg').Controller;
-
 class HomeController extends Controller {
   async index() {
     const ctx = this.ctx;
@@ -97,9 +94,6 @@ class HomeController extends Controller {
     ctx.redirect(ctx.get('referer') || '/');
   }
 }
-
-module.exports = HomeController;
-
 ```
 
 ```js
