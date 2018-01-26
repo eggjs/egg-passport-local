@@ -1,3 +1,7 @@
 'use strict';
 
-exports.keys = '123456';
+exports.keys = 'egg-passport-local';
+
+exports.view = {
+  defaultViewEngine: 'nunjucks',
+};

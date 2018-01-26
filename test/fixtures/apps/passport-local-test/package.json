@@ -1,4 +1,7 @@
 {
-  "name": "passport-local-test",
-  "version": "0.0.1"
+  "name": "passsport-local-test",
+  "version": "0.0.1",
+  "dependencies": {
+    "egg-view-nunjucks": "^2.1.4"
+  }
 }

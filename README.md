@@ -1,4 +1,4 @@
-# egg-passport-local
+# egg-passsport-local
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -7,34 +7,34 @@
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: https://img.shields.io/npm/v/egg-passport-local.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/egg-passport-local
-[travis-image]: https://img.shields.io/travis/eggjs/egg-passport-local.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-passport-local
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-passport-local.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-passport-local?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-passport-local.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-passport-local
-[snyk-image]: https://snyk.io/test/npm/egg-passport-local/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/npm/egg-passport-local
-[download-image]: https://img.shields.io/npm/dm/egg-passport-local.svg?style=flat-square
-[download-url]: https://npmjs.org/package/egg-passport-local
+[npm-image]: https://img.shields.io/npm/v/egg-passsport-local.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/egg-passsport-local
+[travis-image]: https://img.shields.io/travis/eggjs/egg-passsport-local.svg?style=flat-square
+[travis-url]: https://travis-ci.org/eggjs/egg-passsport-local
+[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-passsport-local.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/eggjs/egg-passsport-local?branch=master
+[david-image]: https://img.shields.io/david/eggjs/egg-passsport-local.svg?style=flat-square
+[david-url]: https://david-dm.org/eggjs/egg-passsport-local
+[snyk-image]: https://snyk.io/test/npm/egg-passsport-local/badge.svg?style=flat-square
+[snyk-url]: https://snyk.io/test/npm/egg-passsport-local
 
-[egg-passport](https://github.com/eggjs/egg-passport) local passport plugin, base on [passport-local](https://github.com/jaredhanson/passport-local)
+<!--
+Description here.
+-->
 
 ## Install
 
 ```bash
-$ npm i egg-passport-local --save
+$ npm i egg-passsport-local --save
 ```
 
-mount plugin:
+## Usage
 
 ```js
 // {app_root}/config/plugin.js
-exports.passportLocal = {
+exports.passsportLocal = {
   enable: true,
-  package: 'egg-passport-local',
+  package: 'egg-passsport-local',
 };
 ```
 
@@ -42,17 +42,81 @@ exports.passportLocal = {
 
 ```js
 // {app_root}/config/config.default.js
-exports.passportLocal = {
-  // usernameField: 'username',
-  // passwordField: 'password',
+exports.passsportLocal = {
+  usernameField: 'your custom user name field' // Optional, defaults to 'username'
+  passwordField: 'your custom password field' // Optional, defaults to 'password'
 };
 ```
 
+The available options are:
+
+- `usernameField` - Optional, defaults to 'username'
+- `passwordField` - Optional, defaults to 'password'
+
+Both fields define the name of the properties in the POST body that are sent to the server.
+
 see [config/config.default.js](config/config.default.js) for more detail.
+
+after login successful,we can redirect to origin url use `ctx.session.returnTo` before go to login page, for example:
+
+```js
+ctx.sessioin.returnTo = ctx.path;
+```
 
 ## Example
 
-<!-- example here -->
+```js
+// ./controller/home.js
+
+const Controller = require('egg').Controller;
+
+class HomeController extends Controller {
+  async index() {
+    const ctx = this.ctx;
+      ctx.body = `
+        <div>
+          <h2>${ctx.path}</h2>
+          <a href="/admin">admin</a>
+        </div>`;
+  }
+
+  async admin() {
+    const { ctx } = this;
+    if (ctx.isAuthenticated()) {
+      // show user info
+    } else {
+      // redirect to origin url by ctx.session.returnTo
+      ctx.session.returnTo = ctx.path;
+      await ctx.render('login.html');
+    }
+  }
+
+  async logout() {
+    const ctx = this.ctx;
+
+    ctx.logout();
+    ctx.redirect(ctx.get('referer') || '/');
+  }
+}
+
+module.exports = HomeController;
+
+```
+
+```js
+// router.js
+module.exports = app => {
+  app.router.get('/', 'home.render');
+  app.router.get('/admin', 'home.admin');
+
+  const localStrategy = app.passport.authenticate('local');
+  app.router.post('/passport/local', localStrategy);
+
+  app.router.get('/logout', 'user.logout');
+};
+```
+
+see [passport example](https://github.com/eggjs/examples/tree/master/passport) for more detail.
 
 ## Questions & Suggestions
 
