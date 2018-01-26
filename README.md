@@ -5,7 +5,6 @@
 [![Test coverage][codecov-image]][codecov-url]
 [![David deps][david-image]][david-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
-[![npm download][download-image]][download-url]
 
 [npm-image]: https://img.shields.io/npm/v/egg-passsport-local.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/egg-passsport-local
