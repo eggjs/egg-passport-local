@@ -1,13 +1,12 @@
 'use strict';
 
 module.exports = app => {
-  const { router, controller } = app;
+  app.router.get('/', 'home.render');
+  app.router.get('/login', 'home.login');
+  app.router.get('/admin', 'home.admin');
 
-  router.get('/', controller.home.index);
+  const localStrategy = app.passport.authenticate('local');
+  app.router.post('/passport/local', localStrategy);
 
-  router.get('/home', controller.home.home);
-
-  router.post('/passport/local', app.passport.authenticate('local', {
-    successRedirect: '/home',
-  }));
+  app.router.get('/logout', 'home.logout');
 };

@@ -17,19 +17,30 @@ describe('test/passsport-local.test.js', () => {
   it('should GET /', () => {
     return app.httpRequest()
       .get('/')
-      .expect('hi, passsportLocal')
+      .expect(/Login with/)
       .expect(200);
   });
 
   it('should show login tip', () => {
     return app.httpRequest()
-      .get('/home')
-      .expect(/login page/)
+      .get('/admin')
+      .expect(/egg-passport-local login page/)
       .expect(200);
   });
 
-  it('should show user info', async () => {
+  it('login', async () => {
+    await app.httpRequest()
+      .get('/')
+      .expect(/Login with/)
+      .expect(200);
+
+    await app.httpRequest()
+      .get('/login')
+      .expect(/egg-passport-local login page/)
+      .expect(200);
+
     app.mockCsrf();
+    let cookie;
     await app.httpRequest().
       post('/passport/local')
       .type('form')
@@ -37,6 +48,21 @@ describe('test/passsport-local.test.js', () => {
         username: 'username-local',
         password: 'password-local',
       }))
-      .expect(302);
+      .expect(302)
+      .expect('Location', '/')
+      .expect('set-cookie', /EGG_SESS/)
+      .then(res => {
+        cookie = res.header['set-cookie'];
+      });
+
+    await app.httpRequest()
+      .get('/admin')
+      .set('Cookie', cookie)
+      .expect({
+        provider: 'local',
+        username: 'username-local',
+        password: 'password-local',
+      })
+      .expect(200);
   });
 });
