@@ -130,6 +130,7 @@ exports.passportLocal = {
   package: 'egg-passport-local',
 };
 
+// view plugin can be customized
 exports.nunjucks = {
   enable: true,
   package: 'egg-view-nunjucks',
