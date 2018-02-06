@@ -19,14 +19,16 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "autod": "^3.0.0",
-    "autod-egg": "^1.0.0",
-    "egg": "^2.0.0",
-    "egg-bin": "^4.3.0",
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg": "^2.3.0",
+    "egg-bin": "^4.3.7",
     "egg-ci": "^1.8.0",
-    "egg-mock": "^3.13.0",
-    "eslint": "^4.11.0",
-    "eslint-config-egg": "^5.1.0",
+    "egg-mock": "^3.14.0",
+    "egg-passport": "^2.0.1",
+    "egg-view-nunjucks": "^2.1.4",
+    "eslint": "^4.17.0",
+    "eslint-config-egg": "^6.0.0",
     "webstorm-disable-index": "^1.2.0"
   },
   "engines": {
@@ -42,9 +44,8 @@
     "autod": "autod"
   },
   "files": [
-    "app.js",
-    "agent.js",
-    "config"
+    "config",
+    "app.js"
   ],
   "ci": {
     "version": "8, 9"

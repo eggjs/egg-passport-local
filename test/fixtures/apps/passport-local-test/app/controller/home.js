@@ -7,30 +7,15 @@ class HomeController extends Controller {
     const ctx = this.ctx;
 
     if (ctx.isAuthenticated()) {
-      ctx.body = `<div>
-        <h2>${ctx.path}</h2>
-        <hr>
-        Logined user: ${ctx.user.provider} / ${ctx.user.username} / ${ctx.user.password}| <a href="/logout">Logout</a>
-        <hr>
-        <a href="/admin">Admin</a>
-      </div>`;
+      await ctx.render('admin.tpl', { user: ctx.user });
     } else {
       ctx.session.returnTo = ctx.path;
-      ctx.body = `
-        <div>
-          <h2>${ctx.path}</h2>
-          <hr>
-          Login with
-          <a href="/login">Local</a>
-          <hr>
-          <a href="/admin">Admin</a>
-        </div>
-      `;
+      await ctx.render('index.tpl');
     }
   }
 
   async login() {
-    await this.ctx.render('login.html');
+    await this.ctx.render('login.tpl');
   }
 
   async admin() {
@@ -38,7 +23,7 @@ class HomeController extends Controller {
     if (ctx.isAuthenticated()) {
       ctx.body = ctx.user;
     } else {
-      await ctx.render('login.html');
+      await ctx.render('login.tpl');
     }
   }
 
