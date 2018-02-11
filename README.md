@@ -1,4 +1,4 @@
-# egg-passsport-local
+# egg-passport-local
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -6,22 +6,22 @@
 [![David deps][david-image]][david-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 
-[npm-image]: https://img.shields.io/npm/v/egg-passsport-local.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/egg-passsport-local
-[travis-image]: https://img.shields.io/travis/eggjs/egg-passsport-local.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-passsport-local
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-passsport-local.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-passsport-local?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-passsport-local.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-passsport-local
-[snyk-image]: https://snyk.io/test/npm/egg-passsport-local/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/npm/egg-passsport-local
+[npm-image]: https://img.shields.io/npm/v/egg-passport-local.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/egg-passport-local
+[travis-image]: https://img.shields.io/travis/eggjs/egg-passport-local.svg?style=flat-square
+[travis-url]: https://travis-ci.org/eggjs/egg-passport-local
+[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-passport-local.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/eggjs/egg-passport-local?branch=master
+[david-image]: https://img.shields.io/david/eggjs/egg-passport-local.svg?style=flat-square
+[david-url]: https://david-dm.org/eggjs/egg-passport-local
+[snyk-image]: https://snyk.io/test/npm/egg-passport-local/badge.svg?style=flat-square
+[snyk-url]: https://snyk.io/test/npm/egg-passport-local
 
 ## Install
 
 ```bash
-$ npm i egg-passsport --save
-$ npm i egg-passsport-local --save
+$ npm i egg-passport --save
+$ npm i egg-passport-local --save
 ```
 
 **Note:** also need [egg-passport](https://github.com/eggjs/egg-passport) .
@@ -30,14 +30,14 @@ $ npm i egg-passsport-local --save
 
 ```js
 // {app_root}/config/plugin.js
-exports.passsport = {
+exports.passport = {
   enable: true,
-  package: 'egg-passsport',
+  package: 'egg-passport',
 };
 
-exports.passsportLocal = {
+exports.passportLocal = {
   enable: true,
-  package: 'egg-passsport-local',
+  package: 'egg-passport-local',
 };
 ```
 
@@ -45,7 +45,7 @@ exports.passsportLocal = {
 
 ```js
 // {app_root}/config/config.default.js
-exports.passsportLocal = {
+exports.passportLocal = {
   // usernameField: 'username',
   // passwordField: 'password',
 };

@@ -2,7 +2,7 @@
 
 const mock = require('egg-mock');
 
-describe('test/passsport-local.test.js', () => {
+describe('test/passport-local.test.js', () => {
   let app;
   before(() => {
     app = mock.app({
