@@ -63,7 +63,7 @@ see [config/config.default.js](config/config.default.js) for more detail.
 after login successful, we can redirect to origin url by using `ctx.session.returnTo` before go to login page, for example:
 
 ```js
-ctx.sessioin.returnTo = ctx.path;
+ctx.session.returnTo = ctx.path;
 ```
 
 ## Example
