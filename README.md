@@ -68,7 +68,7 @@ ctx.session.returnTo = ctx.path;
 
 ## Example
 
-see [fixture](test/fixture/apps/passport-local-test) for more detail.
+see [fixture](test/fixtures/apps/passport-local-test) for more detail.
 
 ```js
 // ./controller/home.js
